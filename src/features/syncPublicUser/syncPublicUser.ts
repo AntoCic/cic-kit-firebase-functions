@@ -44,8 +44,8 @@ async function handleSyncPublicUser(event: UserWriteEvent) {
 
   const user = event.data!.after.data() as Record<string, any>;
 
-  // publicKey: lista campi da esporre
-  const publicKeys: PublicUserKeys = Array.isArray(user.publicKey) ? user.publicKey : [];
+  // publicKeys: lista campi da esporre
+  const publicKeys: PublicUserKeys = Array.isArray(user.publicKeys) ? user.publicKeys : [];
 
   const picked = pickPublicFields(user, publicKeys);
 
@@ -58,14 +58,16 @@ async function handleSyncPublicUser(event: UserWriteEvent) {
   const createdAt: Timestamp = (user.createdAt as Timestamp | undefined) ?? updatedAt;
   const name = typeof user.name === 'string' ? user.name : '';
   const surname = typeof user.surname === 'string' ? user.surname : '';
+  const photoURL = typeof user.photoURL === 'string' ? user.photoURL : '';
 
-  // Set "merge: false" cosi se togli una key da publicKey, sparisce anche dal doc pubblico
+  // Set "merge: false" cosi se togli una key da publicKeys, sparisce anche dal doc pubblico
   await publicRef.set(
     {
       ...picked,
       id,
       name,
       surname,
+      photoURL,
       createdAt,
       updatedAt,
     },
