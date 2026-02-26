@@ -1,6 +1,6 @@
 {
   "name": "cic-kit-firebase-functions",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Firebase Functions riutilizzabili per progetti CIC.",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

@@ -54,7 +54,7 @@ export const syncPublicUser = createSyncPublicUser('europe-west1');
 
 `syncPublicUser` (Firestore trigger)
 - Trigger: `users/{userId}`
-- Copia i campi indicati in `publicKey` dentro `users_public/{userId}`
+- Copia i campi indicati in `publicKey` dentro `public_users/{userId}`
 - Se `birthHideYear === true` maschera l'anno della data di nascita
 
 **Dati Attesi in Firestore**

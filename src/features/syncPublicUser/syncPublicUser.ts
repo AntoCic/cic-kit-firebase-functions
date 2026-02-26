@@ -24,14 +24,14 @@ function maskBirthDate(date: string): string {
 
 type UserWriteEvent = FirestoreEvent<Change<DocumentSnapshot> | undefined, { userId: string }>;
 
-// users -> users_public sync
+// users -> public_users sync
 async function handleSyncPublicUser(event: UserWriteEvent) {
   const id = event.params.userId;
 
   const beforeExists = event.data?.before.exists ?? false;
   const afterExists = event.data?.after.exists ?? false;
 
-  const publicRef = db.doc(`users_public/${id}`);
+  const publicRef = db.doc(`public_users/${id}`);
 
   // Se lo user viene eliminato, elimina anche la versione pubblica
   if (beforeExists && !afterExists) {
